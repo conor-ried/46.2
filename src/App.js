@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import DogList from './DogList';
+import DogDetails from './DogDetails';
 
-function App() {
+const App = ({ dogs }) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>React Router Dog Finder</h1>
+      <Switch>
+        <Route exact path="/dogs">
+          <DogList dogs={dogs} />
+        </Route>
+        <Route path="/dogs/:name">
+          <DogDetails dogs={dogs} />
+        </Route>
+        <Redirect to="/dogs" />
+      </Switch>
     </div>
   );
-}
+};
 
 export default App;
